@@ -22,10 +22,13 @@
     "typecheck": "tsc --noEmit",
     "test": "jest --passWithNoTests",
       "ci": "npm ci && npm run validate:config && npm run typecheck && npm run lint && npm run test && npm run build",
+      "prebuild": "npm run validate:config",
     "test:coverage": "jest --coverage",
     "e2e": "npx playwright test",
     "validate:config": "node ./scripts/validate-next-config.js",
-    "predev": "npm run validate:config"
+    "predev": "npm run validate:config",
+    "predev:web": "npm run validate:config",
+    "predev:turbopack": "npm run validate:config"
   },
   "engines": {
     "node": ">=18.0.0",

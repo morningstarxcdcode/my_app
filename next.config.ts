@@ -38,13 +38,14 @@ const nextConfig: NextConfig = {
     };
 
     // Remove file-loader for svg if present (avoid duplicate loader errors)
-    if (config.module && Array.isArray(config.module.rules)) {
+    if (Array.isArray(config.module?.rules)) {
       config.module.rules = config.module.rules.map((rule: unknown) => {
-        const r = rule as { test?: RegExp };
-        if (r && r.test && r.test instanceof RegExp && r.test.test(".svg")) {
+        const r = rule as { test?: RegExp } | undefined;
+        if (r?.test instanceof RegExp && r.test.test(".svg")) {
           // Skip adding the existing svg rule so we can add our own
+          // Preserve the rest of the rule but exclude .svg files from it.
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          return { ...(r as any), exclude: [/\.svg$/i] } as any;
+          return { ...(r as any), exclude: [/\.svg$/i] };
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return r as any;

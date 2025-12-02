@@ -1,3 +1,5 @@
+# my_app
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -45,21 +47,21 @@ If you're getting started, here's how to run and work with this project in plain
 npm ci
 ```
 
-2. Run the app while you're building features
+1. Run the app while you're building features
 
 ```bash
 npm run dev
 # This runs under Webpack by default for stable, reliable debugging and plugin support.
 ```
 
-3. Want to try Turbopack? Go for it.
+1. Want to try Turbopack? Go for it.
 
 ```bash
 npm run dev:turbopack
 # Turbopack is faster, but if you have custom webpack loaders or plugins you may see a warning; in that case, run `npm run dev`.
 ```
 
-4. Keep your code tidy and consistent
+1. Keep your code tidy and consistent
 
 ```bash
 npm run lint      # finds style and lint errors
@@ -67,7 +69,7 @@ npm run lint:fix  # auto-fixes some lint problems
 npm run format    # formats files (prettier)
 ```
 
-5. Build for production (what you'll use to deploy)
+1. Build for production (what you'll use to deploy)
 
 ```bash
 npm run build
@@ -77,6 +79,7 @@ npm start
 Small tips:
 
 - If the dev server prints a warning about `turbo` or `experimental` keys, run `npm run validate:config` to get a quick suggestion about what to fix.
+- The dev scripts (`npm run dev`, `npm run dev:web`, `npm run dev:turbopack`) will automatically run the config validator first so you get helpful warnings before the dev server starts.
 - `npm run dev` is the safe default if you're new to the codebase. Use `dev:turbopack` to try Next's Turbopack path later.
 - If you ever run into odd errors from `node_modules` or wasm, try deleting `node_modules` and re-running `npm ci`.
 

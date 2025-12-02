@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-env node */
 
-const fs = require("fs");
-const path = require("path");
+const fs = require("node:fs");
+const path = require("node:path");
 
 const repoRoot = path.resolve(__dirname, "..");
 const possibleConfigs = [
@@ -66,10 +66,8 @@ if (experimentalTurboPattern.test(contents)) {
         .split(",")
         .map((s) => s.trim().split(":")[0].trim())
         .filter(Boolean);
-      const allowedHeuristics = ["appDir", "workerThreads", "serverComponents"];
-      const suspicious = keys.filter(
-        (k) => k && !allowedHeuristics.includes(k) && k !== "",
-      );
+      const allowedHeuristics = new Set(["appDir", "workerThreads", "serverComponents"]);
+      const suspicious = keys.filter((k) => k && !allowedHeuristics.has(k) && k !== "");
       if (suspicious.length > 0) {
         console.warn(
           "\nHeads up — I found experimental keys: " + suspicious.join(", "),

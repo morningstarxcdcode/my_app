@@ -13,7 +13,7 @@ By default, `npm run dev` maps to `dev:web` so devs get a consistent experience 
 ## Config safety check
 
 - The repository includes a small helper script `scripts/validate-next-config.js` that checks your `next.config.*` for common, often-unintentional experimental keys such as `experimental.turbo` that can cause startup warnings or conflicts.
-- That validator runs automatically as a pre-step to `npm run dev` and will print warnings with practical suggestions. It is non-blocking at the moment — it tells you what to fix but doesn’t stop the server from starting.
+- That validator runs automatically as a pre-step to `npm run dev` (and `npm run dev:web` / `npm run dev:turbopack`), and will print warnings with practical suggestions. It is non-blocking at the moment — it tells you what to fix but doesn’t stop the server from starting.
 
 If you'd like the validator to be stricter (e.g., fail on warnings), please open a PR and we can discuss elevating that behavior.
 
