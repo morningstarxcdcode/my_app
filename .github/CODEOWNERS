@@ -1,0 +1,8 @@
+# CODEOWNERS
+# Add maintainers in the form `@org/team` or `@username` below.
+# Example:
+# * @my-org/my-team
+
+# Leave this file as a reminder to add maintainers, or update with your own.
+# Assign ownership to the project maintainer and co-author.
+* @morningstarxcdcode @Poushmita
