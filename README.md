@@ -76,6 +76,12 @@ To build and start a production server in a single command:
 npm run start:prod
 ```
 
+If you want to run the same checks locally as CI (install deps, validate config, typecheck, lint, test, build), use:
+
+```bash
+npm run ci
+```
+
 1. Want to try Turbopack? Go for it.
 
 ```bash
