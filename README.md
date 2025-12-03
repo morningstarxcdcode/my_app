@@ -43,7 +43,7 @@ You can host this project as a static site on GitHub Pages. This repository incl
 
 Quick steps:
 
-1. If you want to host as a repository page (https://<user>.github.io/<repo>), the workflow automatically sets `NEXT_PUBLIC_BASE_PATH` and `NEXT_PUBLIC_ASSET_PREFIX` to `/<repo>` during the build so your website assets reference the correct path.
+1. If you want to host as a repository page (e.g. `https://USERNAME.github.io/REPO`), the workflow automatically sets `NEXT_PUBLIC_BASE_PATH` and `NEXT_PUBLIC_ASSET_PREFIX` to `/<repo-name>` during the build so your website assets reference the correct path.
 2. Build locally and preview the exported `out/` folder:
 
 ```bash
@@ -53,7 +53,7 @@ npx serve -s out
 # open http://localhost:5000
 ```
 
-3. Push to `main` and the `Deploy to GitHub Pages` workflow will build and publish `out/` to the `gh-pages` branch.
+1. Push to `main` and the `Deploy to GitHub Pages` workflow will build and publish `out/` to the `gh-pages` branch.
 
 Note: GitHub Pages works best for fully static sites. If you later add server-side features (API routes, server-side rendering, or middleware), consider using Vercel instead.
 
@@ -165,9 +165,9 @@ Below is a friendly, no-jargon breakdown of the 21 improvements grouped into fou
 A — Immediate (these will protect the repo and help contributors quickly):
 
 1. Add CI checks — Run lint, type checks, tests and build on every PR automatically. This saves time and prevents broken PRs from being merged.
-2. TypeScript checks — Runs `tsc --noEmit` in CI so typed errors are caught before merge.
-3. Husky + lint-staged — Local pre-commit hooks automatically format & lint code so you don't have to think about it.
-4. Basic tests — Add unit tests and run them in CI to catch regressions early.
+1. TypeScript checks — Runs `tsc --noEmit` in CI so typed errors are caught before merge.
+1. Husky + lint-staged — Local pre-commit hooks automatically format & lint code so you don't have to think about it.
+1. Basic tests — Add unit tests and run them in CI to catch regressions early.
 
 B — High priority (makes the project more secure and friendly): 5) Dependabot (or Renovate) — Automatically propose updates for dependencies so you don't fall behind on important fixes. 6) Engines (Node/npm versions) — Recommend a Node and npm version so everyone's development environment behaves the same. 7) .env.example — Provide a sample environment file so people can set environment variables correctly. 8) Stricter TypeScript rules — Turn on stricter TypeScript flags to catch subtle bugs. 9) Stronger lint rules — Add or tighten rules so code is more consistent and correct. 10) PR and issue templates — Make it easier for people to submit clear PRs and bug reports.
 
