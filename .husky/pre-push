@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Run the full check before pushing to remote to avoid PRs that fail CI
+npm run check:all
