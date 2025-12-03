@@ -26,8 +26,8 @@ jobs:
 
       - name: Build and export
         env:
-          NEXT_PUBLIC_BASE_PATH: 
-          NEXT_PUBLIC_ASSET_PREFIX: 
+          NEXT_PUBLIC_BASE_PATH: "/${{ github.event.repository.name }}"
+          NEXT_PUBLIC_ASSET_PREFIX: "/${{ github.event.repository.name }}"
         run: npm run build:export
 
       - name: Deploy to GitHub Pages
