@@ -39,7 +39,7 @@
     "start:prod": "npm run check:all && npm run start"
   },
   "engines": {
-    "node": ">=18.0.0",
+    "node": ">=20.9.0",
     "npm": ">=9"
   },
   "repository": {
