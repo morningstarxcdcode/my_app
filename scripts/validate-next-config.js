@@ -112,11 +112,16 @@ try {
       if (!basePathPresent) notices.push(`basePath: "/${repoName}"`);
       if (!assetPrefixPresent) notices.push(`assetPrefix: "/${repoName}"`);
       if (notices.length > 0) {
+        // Warn about recommended GitHub Pages config for project pages.
         console.warn(`\nIf you want to deploy to GitHub Pages (https://github.com/...), consider adding: ${notices.join(", ")}`);
-        if (process.env.CI) {
-          console.error("CI mode: failing the build due to missing GitHub Pages recommended configuration.");
-          process.exit(1);
-        }
+
+        // Historically, this validator failed CI builds if the basePath/assetPrefix
+        // were not hard-coded in `next.config.*`, however in CI jobs that run a
+        // deploy step the values are typically injected using environment
+        // variables (for example NEXT_PUBLIC_BASE_PATH). That makes the
+        // validation fragile across different workflows. Instead of failing the
+        // build, print a warning so maintainers can adjust their config if they
+        // wish, but CI will not be blocked by this suggestion.
       }
     }
   }
