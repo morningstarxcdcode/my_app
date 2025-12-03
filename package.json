@@ -29,6 +29,10 @@
     "predev": "npm run validate:config",
     "predev:web": "npm run validate:config",
     "predev:turbopack": "npm run validate:config"
+    ,
+    "check:all": "npm run validate:config && npm run typecheck && npm run lint && npm run test && npm run build",
+    "start:dev": "npm run setup && npm run check:all && npm run dev",
+    "start:prod": "npm run check:all && npm run start"
   },
   "engines": {
     "node": ">=18.0.0",
