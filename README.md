@@ -54,6 +54,26 @@ npm run dev
 # This runs under Webpack by default for stable, reliable debugging and plugin support.
 ```
 
+### Single-command quick start
+
+If you want to set up, validate, test, type-check and run the app with a single command (great for new machines), use:
+
+```bash
+npm run start:dev
+```
+
+This command will:
+- run `npm ci` to install dependencies
+- run the validator (`npm run validate:config`)
+- run TypeScript checks, linting, unit tests and a production build to surface errors}
+- start the local dev server (`npm run dev`) when checks pass
+
+To build and start a production server in a single command:
+
+```bash
+npm run start:prod
+```
+
 1. Want to try Turbopack? Go for it.
 
 ```bash
