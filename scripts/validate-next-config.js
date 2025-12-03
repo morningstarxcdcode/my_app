@@ -101,8 +101,8 @@ try {
     const repoNameMatch = pkg.repository.url.match(/\/([^/]+?)(?:\.git)?$/);
     if (repoNameMatch && repoNameMatch[1]) {
       const repoName = repoNameMatch[1];
-      const basePathRegex = new RegExp(`basePath\\s*:\\s*["']\\/${repoName}");
-      const assetPrefixRegex = new RegExp(`assetPrefix\\s*:\\s*["']\\/${repoName}");
+      const basePathRegex = new RegExp(`basePath\\s*:\\s*["']\\/${repoName}["']`);
+      const assetPrefixRegex = new RegExp(`assetPrefix\\s*:\\s*["']\\/${repoName}["']`);
       const imagesUnoptimizedRegex = /images\s*:\s*\{[\s\S]*?unoptimized\s*:\s*true[\s\S]*?\}/m;
       const basePathPresent = basePathRegex.test(contents);
       const assetPrefixPresent = assetPrefixRegex.test(contents);
@@ -120,6 +120,6 @@ try {
       }
     }
   }
-} catch (e) {
+} catch {
   // ignore if anything goes wrong here — we don't want to block the build for parsing errors
 }
