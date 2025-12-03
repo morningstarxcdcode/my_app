@@ -20,10 +20,4 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm run validate:config
-      - run: npm run typecheck
-      - run: npm run lint
-      - run: npm run test --if-present
-      - run: npm run build
-      - run: npm run test:coverage --if-present
+      - run: npm run ci
