@@ -173,7 +173,7 @@ Small tips:
   - or add an empty `turbopack: {}` block to suppress the warning.
 
 - If something looks wrong with your environment (Node, npm):
-  - make sure you are on a modern Node version (we recommend Node 18+),
+  - make sure you are on a modern Node version (we recommend Node 20.9+),
   - delete `node_modules` and run `npm ci` again.
 
 ## Keeping packages up to date
