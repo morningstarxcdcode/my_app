@@ -63,6 +63,7 @@ npm run start:dev
 ```
 
 This command will:
+
 - run `npm ci` to install dependencies
 - run the validator (`npm run validate:config`)
 - run TypeScript checks, linting, unit tests and a production build to surface errors}

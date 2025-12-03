@@ -1,5 +1,9 @@
 import type { NextConfig } from "next";
 
+// read optional env vars for GitHub Pages deploy
+const GH_PAGES_BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const GH_PAGES_ASSET_PREFIX = process.env.NEXT_PUBLIC_ASSET_PREFIX || "";
+
 const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
@@ -21,6 +25,18 @@ const nextConfig: NextConfig = {
   // if someone tries to run Turbopack while we have a custom webpack rule.
   // Keeping this empty avoids noisy errors while still allowing both runtimes.
   turbopack: {},
+
+  // Build static HTML for `next export` compatible with GitHub Pages
+  // Make images `unoptimized` so the Next image optimizer doesn't require a server.
+  // Use environment-provided basePath / assetPrefix so we don't force a basePath
+  // during local development; set these in the GH Actions workflow when deploying.
+  output: "export",
+  images: {
+    unoptimized: true,
+  },
+  basePath: GH_PAGES_BASE || undefined,
+  assetPrefix: GH_PAGES_ASSET_PREFIX || undefined,
+  trailingSlash: true,
 
   // Add a Webpack rule to support SVGs as components via SVGR. This replaces
   // the previous Turbopack loader configuration so the project continues to

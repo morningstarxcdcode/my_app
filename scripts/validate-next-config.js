@@ -90,3 +90,36 @@ if (experimentalTurboPattern.test(contents)) {
 }
 
 process.exit(0);
+
+/* Additional detection for GitHub Pages deployment needs
+   If this repo is hosted on GitHub and has a repository URL, we can recommend
+   adding `basePath`, `assetPrefix`, and `images.unoptimized` to `next.config.*`
+   when deploying to a project page. This is only advisory unless `CI` is set. */
+try {
+  const pkg = require(path.join(repoRoot, "package.json"));
+  if (pkg?.repository?.url && pkg.repository.url.includes("github.com")) {
+    const repoNameMatch = pkg.repository.url.match(/\/([^/]+?)(?:\.git)?$/);
+    if (repoNameMatch && repoNameMatch[1]) {
+      const repoName = repoNameMatch[1];
+      const basePathRegex = new RegExp(`basePath\\s*:\\s*["']\\/${repoName}");
+      const assetPrefixRegex = new RegExp(`assetPrefix\\s*:\\s*["']\\/${repoName}");
+      const imagesUnoptimizedRegex = /images\s*:\s*\{[\s\S]*?unoptimized\s*:\s*true[\s\S]*?\}/m;
+      const basePathPresent = basePathRegex.test(contents);
+      const assetPrefixPresent = assetPrefixRegex.test(contents);
+      const imagesUnoptimizedPresent = imagesUnoptimizedRegex.test(contents);
+      const notices = [];
+      if (!imagesUnoptimizedPresent) notices.push("images.unoptimized: true");
+      if (!basePathPresent) notices.push(`basePath: "/${repoName}"`);
+      if (!assetPrefixPresent) notices.push(`assetPrefix: "/${repoName}"`);
+      if (notices.length > 0) {
+        console.warn(`\nIf you want to deploy to GitHub Pages (https://github.com/...), consider adding: ${notices.join(", ")}`);
+        if (process.env.CI) {
+          console.error("CI mode: failing the build due to missing GitHub Pages recommended configuration.");
+          process.exit(1);
+        }
+      }
+    }
+  }
+} catch (e) {
+  // ignore if anything goes wrong here — we don't want to block the build for parsing errors
+}
