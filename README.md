@@ -73,6 +73,21 @@ Quick steps:
   The `Deploy to GitHub Pages` workflow will then build and publish the
   `out/` directory to the `gh-pages` branch.
 
+Note: there are two common ways to host a Next.js static export on GitHub Pages:
+
+- GitHub Pages/private build (recommended): Use the default "Pages" build and
+  deployment that GitHub provides (this runs a Pages workflow from `main`).  If
+  you prefer this, set Pages to use `main` in the repository Settings -> Pages.
+
+- GitHub Pages branch (peaceiris): Some CI workflows build the static `out/`
+  artifacts and push them to a dedicated `gh-pages` branch (the `peaceiris`
+  action, as used here). If you use this approach, configure Settings -> Pages
+  to publish from the `gh-pages` branch.
+
+Which to pick: If you want the workflow to create and push static artifacts to
+`gh-pages` (and the UI to show the published assets there), select the `gh-pages`
+branch as the Pages source in Settings; otherwise prefer `main` if you want the
+Pages build to run on GitHub's Pages workflow.
 Note: GitHub Pages works best for fully static sites.
 If you later add server-side features (API routes, server-side rendering, or
 middleware), consider using Vercel instead.
