@@ -68,6 +68,8 @@ This command will:
 - run TypeScript checks, linting, unit tests and a production build to surface errors}
 - start the local dev server (`npm run dev`) when checks pass
 
+Note: CI and the `start:dev` sequence use `lint:ci` which sets ESLint to fail on warnings. This means your single-command run will fail if lint **warnings** are present — it's intentional to keep the repository warnings-free.
+
 To build and start a production server in a single command:
 
 ```bash
